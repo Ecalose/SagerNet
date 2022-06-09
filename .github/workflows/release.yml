@@ -18,6 +18,7 @@ jobs:
   check:
     name: Check Access
     runs-on: ubuntu-latest
+    timeout-minutes: 120
     steps:
       - name: "Check access"
         uses: "lannonbr/repo-permission-check-action@2.0.0"
