@@ -165,6 +165,12 @@ object Key {
     const val SERVER_UDP_OVER_TCP = "serverUoT"
     const val SERVER_WITHOUT_BROOK_PROTOCOL = "serverWithoutBrookProtocol"
     const val SERVER_GRPC_MODE = "serverGrpcMode"
+    const val SERVER_ENCRYPTED_PROTOCOL_EXTENSION = "serverEncryptedProtocolExtension"
+
+    const val SERVER_UDP_RELAY_MODE = "serverUDPRelayMode"
+    const val SERVER_CONGESTION_CONTROLLER = "serverCongestionController"
+    const val SERVER_DISABLE_SNI = "serverDisableSNI"
+    const val SERVER_REDUCE_RTT= "serverReduceRTT"
 
     const val BALANCER_TYPE = "balancerType"
     const val BALANCER_GROUP = "balancerGroup"

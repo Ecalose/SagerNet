@@ -126,10 +126,9 @@ class AssetsActivity : ThemedActivity() {
                 alert(getString(R.string.route_not_asset, fileName)).show()
                 return@registerForActivityResult
             }
-            val filesDir = getExternalFilesDir(null) ?: filesDir
 
             runOnDefaultDispatcher {
-                val outFile = File(filesDir, fileName).apply {
+                val outFile = File(app.externalAssets, fileName).apply {
                     parentFile?.mkdirs()
                 }
 
@@ -165,14 +164,13 @@ class AssetsActivity : ThemedActivity() {
         }
 
         fun reloadAssets() {
-            val filesDir = getExternalFilesDir(null) ?: filesDir
-            val files = filesDir.listFiles()
+            val files = app.externalAssets.listFiles()
                 ?.filter { it.isFile && it.name.endsWith(".dat") && it.name !in internalFiles }
             assets.clear()
-            assets.add(File(filesDir, "geoip.dat"))
+            assets.add(File(app.externalAssets, "geoip.dat"))
             assets.add(
                 File(
-                    filesDir, "geosite.dat"
+                    app.externalAssets, "geosite.dat"
                 )
             )
             if (files != null) assets.addAll(files)
@@ -278,12 +276,11 @@ class AssetsActivity : ThemedActivity() {
         var fileName = file.name
         if (DataStore.rulesProvider == 0) {
             if (file.name == internalFiles[0]) {
-                repo = "SagerNet/geoip"
+                repo = "v2fly/geoip"
             } else {
                 repo = "v2fly/domain-list-community"
-                fileName = "dlc.dat"
+                fileName = "dlc.dat.xz"
             }
-            fileName = "$fileName.xz"
         } else {
             repo = "Loyalsoldier/v2ray-rules-dat"
         }
